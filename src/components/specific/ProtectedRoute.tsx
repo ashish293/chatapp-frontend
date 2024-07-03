@@ -1,3 +1,4 @@
+import { Cookies } from "react-cookie";
 import { Navigate } from "react-router-dom";
 
 type Props = {
@@ -5,10 +6,9 @@ type Props = {
 };
 
 const ProtectedRoute: React.FC<Props> = ({ children }) => {
-	const authToken = document.cookie
-		.split("; ")
-		.find((row) => row.startsWith("authToken="))
-		?.split("=")[1];
+	const authToken = new Cookies().get("chat-token");
+	console.log(authToken);
+
 	return !!authToken ? children : <Navigate to={"/login"} />;
 };
 

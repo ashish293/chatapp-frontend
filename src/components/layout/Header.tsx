@@ -23,11 +23,13 @@ import { useNavigate } from "react-router-dom";
 const SearchDialog = lazy(() => import("../dialog/SearchDialog"));
 const Notifications = lazy(() => import("../dialog/Notification"));
 const NewGroup = lazy(() => import("../dialog/NewGroup"));
+const LogoutDialog = lazy(() => import("../dialog/LogoutDialog"));
 
 const Header = ({ openDrawer }: { openDrawer: () => void }) => {
 	const [isSearch, setIsSearch] = useState<boolean>(false);
 	const [isNotifications, setIsNotifications] = useState<boolean>(false);
 	const [isNewGroup, setIsNewGroup] = useState<boolean>(false);
+	const [isLogout, setIsLogout] = useState<boolean>(false);
 	const navigate = useNavigate();
 	const handleSearch = () => {
 		console.log("Search");
@@ -45,6 +47,10 @@ const Header = ({ openDrawer }: { openDrawer: () => void }) => {
 	};
 	const handleOpenNavMenu = () => {
 		openDrawer();
+	};
+
+	const handleLogout = () => {
+		setIsLogout(true);
 	};
 
 	const menuItems = [
@@ -71,7 +77,7 @@ const Header = ({ openDrawer }: { openDrawer: () => void }) => {
 		{
 			title: "Logout",
 			icon: <LogoutIcon />,
-			onClick: handleNotifications,
+			onClick: handleLogout,
 		},
 	];
 
@@ -122,6 +128,12 @@ const Header = ({ openDrawer }: { openDrawer: () => void }) => {
 			{isNewGroup && (
 				<Suspense fallback={<Backdrop open />}>
 					<NewGroup onClose={() => setIsNewGroup(false)} />
+				</Suspense>
+			)}
+
+			{isLogout && (
+				<Suspense fallback={<Backdrop open />}>
+					<LogoutDialog onClose={() => setIsLogout(false)} />
 				</Suspense>
 			)}
 		</>

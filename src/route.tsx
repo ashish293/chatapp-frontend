@@ -1,9 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import { lazy } from "react";
 import ProtectedRoute from "./components/specific/ProtectedRoute";
-
-const Chat = lazy(() => import("./pages/Chat"));
-const Home = lazy(() => import("./pages/Home"));
+import Home from "./pages/Home";
+import Chat from "./pages/Chat"; // Home and chat are common routes
 const AdminLogin = lazy(() => import("./pages/admin/AdminLogin"));
 const AdminChat = lazy(() => import("./pages/admin/AdminChat"));
 const AdminMessage = lazy(() => import("./pages/admin/AdminMessage"));

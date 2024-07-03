@@ -5,15 +5,28 @@ import { useState } from "react";
 import MyTextField from "./MyTextField";
 import Api from "../../utils/Api";
 import toast from "react-hot-toast";
+import { Cookies } from "react-cookie";
+import { Navigate, redirect, useNavigate } from "react-router-dom";
 
 const Login = () => {
+	const authToken = new Cookies().get("chat-token");
+	if (authToken) {
+		return <Navigate to={"/"} />;
+	}
+	const navigate = useNavigate();
+
 	const onSubmit = async (values: any, { setSubmitting }: { setSubmitting: any }) => {
 		const url = isLogin ? "/user/signin" : "/user/signup";
 		try {
-			const res = await Api.post(url, values);
-			toast.success(res.data.message);
-			localStorage.setItem("token", res.data.token);
-			setSubmitting(false);
+			const res = await Api.post(url, values, {
+				headers: { "Content-Type": "application/json" },
+				withCredentials: true,
+			});
+			if (res.data.success) {
+				localStorage.setItem("token", res.data.token);
+				setSubmitting(false);
+				navigate("/");
+			}
 		} catch (error: any) {
 			console.log(error);
 			toast.error(error.response.data.message);
@@ -72,7 +85,7 @@ const Login = () => {
 							fullWidth
 							sx={{ marginTop: 2 }}
 						>
-							Sign Up
+							{isLogin ? "Login" : "Sign Up"}
 						</Button>
 					</form>
 					{isLogin && (
