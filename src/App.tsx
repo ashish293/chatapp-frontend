@@ -9,8 +9,13 @@ import Loader from "./components/layout/Loader";
 import { store } from "./redux/store";
 import { Provider } from "react-redux";
 import { CookiesProvider } from "react-cookie";
+import { io } from "socket.io-client";
 
 const App = () => {
+	const socket = io("http://localhost:9000");
+	socket.on("connect", () => {
+		console.log(socket.id); // x8WIv7-mJelg7on_ALbx
+	});
 	return (
 		<CookiesProvider>
 			<HelmetProvider>

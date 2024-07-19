@@ -15,14 +15,14 @@ const ChatItem = ({ chat, closeDrawer }: ChatItemProps) => {
 		<Link to={`/chat/${chat.id}`} onContextMenu={rightClick} onClick={closeDrawer}>
 			<Grid container sx={styles.container(chat.id == chatId)}>
 				<Grid item xs={2}>
-					<Badge
+					{/* <Badge
 						overlap="circular"
 						variant={chat.online ? "dot" : "standard"}
 						anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
 						color="success"
-					>
-						<Avatar src={chat.image} sx={styles.avatar} alt={chat.name} />
-					</Badge>
+					> */}
+					<Avatar src={chat.image} sx={styles.avatar} alt={chat.name} />
+					{/* </Badge> */}
 				</Grid>
 				<Grid item xs={7} sx={{ paddingLeft: 1 }}>
 					<Typography variant="subtitle1" fontWeight={500} style={styles.ellipsis}>

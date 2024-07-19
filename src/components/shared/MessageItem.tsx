@@ -2,15 +2,17 @@ import { Box, Typography } from "@mui/material";
 import { MessageData } from "../../types/dataType";
 import { memo } from "react";
 import Attactment from "./Attachment";
+import { getLocalUser } from "../../utils/utility";
 
 const MessageItem = ({ data }: { data: MessageData }) => {
+	const currentUserId = getLocalUser()?.id;
+
 	return (
 		<Box
-			key={data.id}
 			sx={{
 				...styles.messageBoxStyles,
-				backgroundColor: data.senderId === "1" ? "#f3f3f3" : "#f3f3f3",
-				alignSelf: data.senderId === "1" ? "flex-start" : "flex-end",
+				backgroundColor: data.sender?.id === currentUserId ? "#f3f3f3" : "#f3f3f3",
+				alignSelf: data.sender?.id === currentUserId ? "flex-end" : "flex-start",
 			}}
 			onScroll={() => {
 				console.log("scrolling");
@@ -19,8 +21,8 @@ const MessageItem = ({ data }: { data: MessageData }) => {
 			{data.attachments.map((attachment) => (
 				<Attactment data={attachment} />
 			))}
-			<Typography>{data.message}</Typography>
-			<Typography variant="caption">{new Date(data.time).toLocaleString()}</Typography>
+			<Typography>{data.content}</Typography>
+			<Typography variant="caption">{new Date(data.createdAt).toLocaleString()}</Typography>
 		</Box>
 	);
 };

@@ -21,7 +21,7 @@ const NewGroup = ({ onClose }: { onClose: () => void }) => {
 			<Stack spacing={2} sx={{ maxHeight: "40vh", overflowY: "scroll", m: 2 }}>
 				{dummyUserData.map((user) => (
 					<Stack
-						key={user.userId}
+						key={user.id}
 						direction={"row"}
 						alignItems="center"
 						justifyContent="space-between"

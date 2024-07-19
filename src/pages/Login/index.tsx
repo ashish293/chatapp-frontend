@@ -1,4 +1,13 @@
-import { Box, Button, Container, Paper, Typography } from "@mui/material";
+import {
+	Avatar,
+	Box,
+	Button,
+	Container,
+	IconButton,
+	Paper,
+	Stack,
+	Typography,
+} from "@mui/material";
 import { useFormik } from "formik";
 import { validate } from "./validator";
 import { useState } from "react";
@@ -7,29 +16,41 @@ import Api from "../../utils/Api";
 import toast from "react-hot-toast";
 import { Cookies } from "react-cookie";
 import { Navigate, redirect, useNavigate } from "react-router-dom";
+import { VisuallyHiddenInput } from "../../components/style/StyledComponent";
+import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import { useFileHandler } from "../../hooks/customHook";
+import { login, signup } from "../../utils/service";
 
 const Login = () => {
 	const authToken = new Cookies().get("chat-token");
+	const { file, fileUrl, handleFileChange } = useFileHandler();
 	if (authToken) {
 		return <Navigate to={"/"} />;
 	}
 	const navigate = useNavigate();
 
 	const onSubmit = async (values: any, { setSubmitting }: { setSubmitting: any }) => {
-		const url = isLogin ? "/user/signin" : "/user/signup";
-		try {
-			const res = await Api.post(url, values, {
-				headers: { "Content-Type": "application/json" },
-				withCredentials: true,
-			});
-			if (res.data.success) {
-				localStorage.setItem("token", res.data.token);
-				setSubmitting(false);
+		setSubmitting(true);
+		if (isLogin) {
+			const res = await login(values);
+			console.log(res);
+
+			if (res?.success) {
+				localStorage.setItem("token", res.token);
+				localStorage.setItem("user", JSON.stringify(res.user));
 				navigate("/");
+			} else {
+				toast.error(res?.message);
 			}
-		} catch (error: any) {
-			console.log(error);
-			toast.error(error.response.data.message);
+			setSubmitting(false);
+		} else {
+			const res = await signup(values);
+			if (res?.success) {
+				localStorage.setItem("token", res.token);
+				navigate("/");
+			} else {
+				toast.error(res?.message);
+			}
 			setSubmitting(false);
 		}
 	};
@@ -74,7 +95,31 @@ const Login = () => {
 					</Typography>
 
 					<form onSubmit={formik.handleSubmit}>
-						{!isLogin && <MyTextField name="name" formik={formik} />}
+						{!isLogin && (
+							<>
+								<Stack sx={{ position: "relative", margin: "auto", width: 60 }}>
+									<Avatar alt="Remy Sharp" src={fileUrl} sx={{ width: 60, height: 60 }} />
+									<IconButton
+										color="primary"
+										aria-label="upload picture"
+										component="label"
+										sx={{
+											position: "absolute",
+											bottom: 0,
+											right: 0,
+											height: 20,
+											width: 20,
+										}}
+									>
+										<>
+											<CameraAltIcon />
+											<VisuallyHiddenInput type="file" name="image" onChange={handleFileChange} />
+										</>
+									</IconButton>
+								</Stack>
+								<MyTextField name="name" formik={formik} />
+							</>
+						)}
 						<MyTextField name="email" formik={formik} />
 						<MyTextField name="password" formik={formik} />
 						<Button

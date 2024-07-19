@@ -1,18 +1,26 @@
-interface ChatData {
+interface ChatDataType {
   id: string;
   name: string;
-  online: boolean;
-  image: string;
-  lastMessage: string;
-  lastMessageTime: string;
-  unreadMessageCount: number;
+  online?: boolean;
+  image?: string;
+  lastMessage?: string;
+  lastMessageTime?: string;
+  unreadMessageCount?: number;
+}
+
+interface UserDataType{
+  id: string;
+  name: string;
+  email: string;
+  image?: string;
+  bio?: string;
 }
 
 interface UserData {
   name: string;
-  userId: string;
+  id: string;
   email: string;
-  image: string;
+  image?: string;
   bio?: string;
 }
 
@@ -24,11 +32,10 @@ interface NotificationData {
 
 interface MessageData {
   id: string;
-  message: string;
-  time: string;
-  senderId: string;
+  content: string;
+  sender: undefined | Pick<UserData, "name" | "id" | "image">;
   attachments: AttachmentData[]
-  chatId: string;
+  createdAt: string;
 }
 
 interface AttachmentData {
@@ -43,6 +50,21 @@ interface GroupInfo {
   members: UserData[];
 }
 
+type MemberType = {
+  id: string;
+  name: string;
+  email: string;
+  image?: string;
+};
 
+type ChatType = {
+  id: string;
+  name: string;
+  isGroup: boolean;
+  creator: string;
+  members: MemberType[];
+  createdAt: string;
+  __v: number;
+};
 
-export type { ChatData, UserData, NotificationData, MessageData, AttachmentData, GroupInfo}
+export type { ChatType, ChatDataType, UserData, NotificationData, MessageData, AttachmentData, GroupInfo}

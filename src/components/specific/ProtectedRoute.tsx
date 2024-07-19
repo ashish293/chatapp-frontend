@@ -7,8 +7,6 @@ type Props = {
 
 const ProtectedRoute: React.FC<Props> = ({ children }) => {
 	const authToken = new Cookies().get("chat-token");
-	console.log(authToken);
-
 	return !!authToken ? children : <Navigate to={"/login"} />;
 };
 

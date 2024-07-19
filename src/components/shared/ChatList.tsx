@@ -1,11 +1,15 @@
 import { dummyChatData } from "../../constant/sampleData";
+import { useGetChatsQuery } from "../../redux/api/chat";
 import ChatItem from "./ChatItem";
 
 const ChatList = ({ closeDrawer }: { closeDrawer: () => void }) => {
+	const { data, isError, isLoading, error } = useGetChatsQuery();
+	console.log("data", data);
+
 	return (
 		<div>
-			{dummyChatData.map((chat, index) => (
-				<ChatItem key={index} chat={chat} closeDrawer={closeDrawer} />
+			{data?.data?.map((chat) => (
+				<ChatItem key={chat.id} chat={chat} closeDrawer={closeDrawer} />
 			))}
 		</div>
 	);
