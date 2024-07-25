@@ -1,33 +1,23 @@
 import { Stack, Avatar, Typography } from "@mui/material";
+import { getLocalUser } from "../../utils/utility";
 
 const UserCard = () => {
-	interface User {
-		name: string;
-		email: string;
-		image?: string;
-		bio?: string;
-	}
-
-	const userData = localStorage.getItem("user");
-	let user;
-	if (userData) {
-		user = JSON.parse(userData) as User;
-	}
+	const currentUser = getLocalUser();
 
 	return (
 		<Stack sx={styles.container}>
-			<Avatar src={user?.image} style={styles.avatar} />
+			<Avatar src={currentUser?.image} style={styles.avatar} />
 			<Typography variant="h4" style={styles.name}>
-				{user?.name}
+				{currentUser?.name}
 			</Typography>
 			<Typography variant="subtitle1" style={styles.email}>
-				{user?.email}
+				{currentUser?.email}
 			</Typography>
 			<Typography variant="h6" style={styles.bioTitle}>
 				Bio
 			</Typography>
 			<Typography variant="body1" style={styles.bioText}>
-				{user?.bio}
+				{currentUser?.bio}
 			</Typography>
 		</Stack>
 	);

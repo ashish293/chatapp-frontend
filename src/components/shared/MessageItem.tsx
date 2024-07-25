@@ -14,11 +14,8 @@ const MessageItem = ({ data }: { data: MessageData }) => {
 				backgroundColor: data.sender?.id === currentUserId ? "#f3f3f3" : "#f3f3f3",
 				alignSelf: data.sender?.id === currentUserId ? "flex-end" : "flex-start",
 			}}
-			onScroll={() => {
-				console.log("scrolling");
-			}}
 		>
-			{data.attachments.map((attachment) => (
+			{data.attachments?.map((attachment) => (
 				<Attactment data={attachment} />
 			))}
 			<Typography>{data.content}</Typography>
