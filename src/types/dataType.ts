@@ -3,8 +3,7 @@ interface ChatDataType {
   name: string;
   online?: boolean;
   image?: string;
-  lastMessage?: string;
-  lastMessageTime?: string;
+  lastMessage?: MessageData;
   unreadMessageCount?: number;
 }
 

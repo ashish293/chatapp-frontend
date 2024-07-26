@@ -1,7 +1,8 @@
-import { ChatDataType, GroupInfo } from "./dataType";
+import { ChatDataType, GroupInfo, UserData } from "./dataType";
 
 interface ChatItemProps {
   chat: ChatDataType;
+  currentUser: UserData | null;
   closeDrawer: () => void;
 }
 

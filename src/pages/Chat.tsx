@@ -46,13 +46,20 @@ const Chat = () => {
 	interface SocketMessageType extends MessageData {
 		chatId: string;
 	}
-	socket.off(events.NEW_MESSAGE);
-	socket.on(events.NEW_MESSAGE, (message: SocketMessageType) => {
-		console.log(message);
+	// socket.off(events.NEW_MESSAGE);
 
-		if (message.chatId === location.pathname.split("/").pop()) {
-			setData([message, ...(data ?? [])]);
-		}
+	useEffect(() => {
+		const socketListener = (message: SocketMessageType) => {
+			console.log(message);
+
+			if (message.chatId === location.pathname.split("/").pop()) {
+				setData([message, ...(data ?? [])]);
+			}
+		};
+		socket.on(events.NEW_MESSAGE, socketListener);
+		return () => {
+			socket.off(events.NEW_MESSAGE, socketListener);
+		};
 	});
 
 	const handleSend = () => {

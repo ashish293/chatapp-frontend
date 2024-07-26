@@ -1,13 +1,64 @@
 import { useGetChatsQuery } from "../../redux/api/chat";
 import ChatItem from "./ChatItem";
+import { getLocalUser } from "../../utils/utility";
+import socket from "../../utils/socket";
+import events from "../../constant/events";
+import type { ChatDataType, MessageData } from "../../types/dataType";
+import { memo, useEffect, useRef, useState } from "react";
+import Api from "../../utils/Api";
 
 const ChatList = ({ closeDrawer }: { closeDrawer: () => void }) => {
-	const { data, isError, isLoading, error } = useGetChatsQuery();
+	// const { data, isError, isLoading, error } = useGetChatsQuery();
+	const [listData, setChatList] = useState<ChatDataType[]>();
+	const totalPages = useRef();
+	const pageNumber = useRef<number>(0);
+
+	const getChatList = async () => {
+		const res = await Api.get("chat/all");
+		setChatList(res.data?.data);
+		totalPages.current = res.data?.totalPages;
+		pageNumber.current = res.data?.pageNumber;
+	};
+
+	useEffect(() => {
+		getChatList();
+	}, []);
+
+	const currentUser = getLocalUser();
+	interface SocketMessageType extends MessageData {
+		chatId: string;
+	}
+	const socketListener = (message: SocketMessageType) => {
+		console.log("listData", listData);
+		const newData = listData?.reduce((acc, chat) => {
+			console.log("chat", chat);
+			if (chat.id == message.chatId) {
+				chat.lastMessage = message;
+				acc.unshift(chat);
+			} else {
+				acc.push(chat);
+			}
+			return acc;
+		}, Array<ChatDataType>());
+		setChatList(newData);
+	};
+	// socket.off(events.NEW_MESSAGE);
+
+	useEffect(() => {
+		console.log("socket");
+
+		socket.on(events.NEW_MESSAGE, socketListener);
+		// return () => {
+		// 	console.log("sockt off");
+
+		// 	socket.off(events.NEW_MESSAGE, socketListener);
+		// };
+	}, []);
 
 	return (
 		<div>
-			{data?.data?.map((chat) => (
-				<ChatItem key={chat.id} chat={chat} closeDrawer={closeDrawer} />
+			{listData?.map((chat) => (
+				<ChatItem key={chat.id} chat={chat} closeDrawer={closeDrawer} currentUser={currentUser} />
 			))}
 		</div>
 	);
