@@ -33,13 +33,8 @@ interface MessageData {
   id: string;
   content: string;
   sender: undefined | Pick<UserData, "name" | "id" | "image">;
-  attachments: AttachmentData[]
+  attachments: string[]
   createdAt: string;
-}
-
-interface AttachmentData {
-  url: string;
-  public_id: string;
 }
 
 interface GroupInfo {
@@ -66,4 +61,4 @@ type ChatType = {
   __v: number;
 };
 
-export type { ChatType, ChatDataType, UserData, NotificationData, MessageData, AttachmentData, GroupInfo}
+export type { ChatType, ChatDataType, UserData, NotificationData, MessageData,  GroupInfo}

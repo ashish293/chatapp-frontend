@@ -113,7 +113,12 @@ const Login = () => {
 									>
 										<>
 											<CameraAltIcon />
-											<VisuallyHiddenInput type="file" name="image" onChange={handleFileChange} />
+											<VisuallyHiddenInput
+												type="file"
+												name="image"
+												onChange={handleFileChange}
+												accept="image/png, image/jpeg, image/jpg"
+											/>
 										</>
 									</IconButton>
 								</Stack>

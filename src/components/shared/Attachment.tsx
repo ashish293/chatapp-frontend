@@ -1,14 +1,13 @@
 import { Box, Dialog, IconButton, Modal, Stack } from "@mui/material";
-import { AttachmentData } from "../../types/dataType";
 import { useState } from "react";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import CloseIcon from "@mui/icons-material/Close";
 
-const Attactment = ({ data }: { data: AttachmentData }) => {
+const Attactment = ({ url }: { url: string }) => {
 	const [open, setOpen] = useState(false);
 	const handleClose = () => setOpen(false);
 	const handleOpen = () => setOpen(true);
-	const fileExt = data.url.split(".").pop();
+	const fileExt = url?.split(".").pop();
 	if (fileExt === "jpg" || fileExt === "png" || fileExt === "jpeg") {
 		return (
 			<>
@@ -20,7 +19,7 @@ const Attactment = ({ data }: { data: AttachmentData }) => {
 				>
 					<Stack direction="row" justifyContent="flex-end" p={1}>
 						<IconButton>
-							<a href={data.url} download style={{ color: "inherit" }}>
+							<a href={url} download style={{ color: "inherit" }}>
 								<CloudDownloadIcon />
 							</a>
 						</IconButton>
@@ -29,7 +28,7 @@ const Attactment = ({ data }: { data: AttachmentData }) => {
 						</IconButton>
 					</Stack>
 					<img
-						src={data.url}
+						src={url}
 						style={{
 							maxHeight: "80vh",
 							maxWidth: "80vw",
@@ -40,7 +39,7 @@ const Attactment = ({ data }: { data: AttachmentData }) => {
 				</Dialog>
 				<img
 					onClick={handleOpen}
-					src={data.url}
+					src={url}
 					style={{
 						maxWidth: "300px",
 						maxHeight: "300px",
@@ -53,7 +52,7 @@ const Attactment = ({ data }: { data: AttachmentData }) => {
 	} else if (fileExt === "mp4" || fileExt === "mkv" || fileExt === "avi") {
 		return (
 			<video
-				src={data.url}
+				src={url}
 				style={{
 					maxWidth: "300px",
 					maxHeight: "300px",

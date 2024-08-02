@@ -16,7 +16,7 @@ const MessageItem = ({ data }: { data: MessageData }) => {
 			}}
 		>
 			{data.attachments?.map((attachment) => (
-				<Attactment data={attachment} />
+				<Attactment url={attachment} />
 			))}
 			<Typography>{data.content}</Typography>
 			<Typography variant="caption">{new Date(data.createdAt).toLocaleString()}</Typography>
