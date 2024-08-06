@@ -9,6 +9,7 @@ import { MessageData } from "../../types/dataType";
 import Api from "../../utils/Api";
 import socket from "../../utils/socket";
 import ChatInput from "./ChatInput";
+import Header from "../../components/layout/Header";
 
 const Chat = () => {
 	const totalPages = useRef();
@@ -47,6 +48,7 @@ const Chat = () => {
 	});
 	return (
 		<Stack width="100%" height="100%">
+			<Header title={} />
 			<InfiniteScroll
 				data={data}
 				renderItem={(item) => <MessageItem data={item} key={item?.id} />}

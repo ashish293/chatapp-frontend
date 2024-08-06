@@ -5,6 +5,7 @@ import ChatList from "../shared/ChatList";
 import UserCard from "../specific/UserCard";
 import { useState } from "react";
 import { Link } from "../style/StyledComponent";
+import SideBar from "./SideBar";
 
 const AppLayout = (WrappedComponent: React.ComponentType<any>) => (props: any) => {
 	const [open, setOpen] = useState(innerWidth < 600);
@@ -14,7 +15,7 @@ const AppLayout = (WrappedComponent: React.ComponentType<any>) => (props: any) =
 		<>
 			<Title />
 			<Box sx={{ display: "flex", height: "100vh", flexDirection: "column" }}>
-				<Header openDrawer={openDrawer} />
+				{/* <Header openDrawer={openDrawer} />
 				<Drawer
 					open={open}
 					onClose={() => {
@@ -29,10 +30,10 @@ const AppLayout = (WrappedComponent: React.ComponentType<any>) => (props: any) =
 						</Link>
 						<ChatList closeDrawer={closeDrawer} />
 					</Box>
-				</Drawer>
+				</Drawer> */}
 				<Grid container sx={{ height: "calc(100vh - 4rem)" }}>
 					<Grid item sm={4} md={3} sx={{ display: { xs: "none", sm: "block" } }}>
-						<ChatList closeDrawer={closeDrawer} />
+						<SideBar closeDrawer={closeDrawer} />
 					</Grid>
 					<Grid item xs={12} sm={8} md={6} lg={7} sx={{ height: "100%" }}>
 						<WrappedComponent {...props} />
