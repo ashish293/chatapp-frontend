@@ -48,7 +48,7 @@ const Chat = () => {
 	});
 	return (
 		<Stack width="100%" height="100%">
-			<Header title={} />
+			{/* <Header title={} /> */}
 			<InfiniteScroll
 				data={data}
 				renderItem={(item) => <MessageItem data={item} key={item?.id} />}
