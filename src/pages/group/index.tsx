@@ -1,11 +1,11 @@
-import { Box, Drawer, Grid, IconButton, Typography } from "@mui/material";
-import { Outlet, useNavigate } from "react-router-dom";
-import GroupList from "./GroupList";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link } from "../../components/style/StyledComponent";
+import { Box, Drawer, Grid, IconButton, Typography } from "@mui/material";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "../../components/style/StyledComponent";
 import { GroupInfo } from "../../types/dataType";
+import GroupList from "./GroupList";
 import ManageGroup from "./ManageGroup";
 const index = () => {
 	const navigate = useNavigate();

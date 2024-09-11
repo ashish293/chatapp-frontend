@@ -1,6 +1,6 @@
 import { Button, ButtonGroup, Typography } from "@mui/material";
 import toast from "react-hot-toast";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Api from "../../utils/Api";
 import AppDialog from "../layout/Dialog";
 

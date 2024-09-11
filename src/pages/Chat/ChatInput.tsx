@@ -1,17 +1,17 @@
-import { Stack, IconButton, TextField } from "@mui/material";
-import { VisuallyHiddenInput } from "../../components/style/StyledComponent";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import SendIcon from "@mui/icons-material/Send";
-import { useEffect, useState } from "react";
+import { IconButton, Stack, TextField } from "@mui/material";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import { VisuallyHiddenInput } from "../../components/style/StyledComponent";
+import events from "../../constant/events";
+import { useFileHandler } from "../../hooks/customHook";
 import { MessageData } from "../../types/dataType";
 import socket from "../../utils/socket";
-import events from "../../constant/events";
-import toast from "react-hot-toast";
-import { useFileHandler } from "../../hooks/customHook";
 
 const ChatInput = ({ updateChatList }: { updateChatList: (message: MessageData) => void }) => {
 	const [message, setMessage] = useState<string>("");
-	const { file, fileUrl, handleFileChange } = useFileHandler();
+	const { handleFileChange } = useFileHandler();
 
 	const handleSend = () => {
 		if (!message) return;

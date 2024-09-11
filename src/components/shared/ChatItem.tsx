@@ -1,9 +1,9 @@
-import { Avatar, Badge, Box, Grid, Typography, alpha } from "@mui/material";
-import { ChatItemProps } from "../../types/propsType";
+import { Avatar, Box, Grid, Typography, alpha } from "@mui/material";
 import { memo } from "react";
 import { useParams } from "react-router-dom";
-import { Link } from "../style/StyledComponent";
+import { ChatItemProps } from "../../types/propsType";
 import { dateParser } from "../../utils/utility";
+import { Link } from "../style/StyledComponent";
 
 const ChatItem = ({ chat, closeDrawer, currentUser }: ChatItemProps) => {
 	const chatId = useParams().chatId;

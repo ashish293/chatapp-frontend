@@ -1,22 +1,23 @@
 import SearchIcon from "@mui/icons-material/Search";
 import { AppBar, Backdrop, Box, Toolbar, Typography } from "@mui/material";
 import { Suspense, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import IconBtn from "../shared/IconBtn";
 import { Link } from "../style/StyledComponent";
+import SearchDialog from "../dialog/SearchDialog";
 
-type HeaderProps = {
-	title: string;
-	image?: string;
-	search?: () => {};
-};
+// type HeaderProps = {
+// 	title: string;
+// 	image?: string;
+// 	search?: () => {};
+// };
 
-const Header = (props: HeaderProps) => {
+const Header = () => {
 	const [isSearch, setIsSearch] = useState<boolean>(false);
-	const [isNotifications, setIsNotifications] = useState<boolean>(false);
-	const [isNewGroup, setIsNewGroup] = useState<boolean>(false);
-	const [isLogout, setIsLogout] = useState<boolean>(false);
-	const navigate = useNavigate();
+	// const [isNotifications, setIsNotifications] = useState<boolean>(false);
+	// const [isNewGroup, setIsNewGroup] = useState<boolean>(false);
+	// const [isLogout, setIsLogout] = useState<boolean>(false);
+	// const navigate = useNavigate();
 	const handleSearch = () => {
 		console.log("Search");
 		setIsSearch(true);
@@ -50,12 +51,12 @@ const Header = (props: HeaderProps) => {
 				</Suspense>
 			)}
 
-			{isNotifications && (
+			{/* {isNotifications && (
 				<Suspense fallback={<Backdrop open />}>
 					<Notifications onClose={() => setIsNotifications(false)} />
 				</Suspense>
-			)}
-
+			)} */}
+			{/* 
 			{isNewGroup && (
 				<Suspense fallback={<Backdrop open />}>
 					<NewGroup onClose={() => setIsNewGroup(false)} />
@@ -66,7 +67,7 @@ const Header = (props: HeaderProps) => {
 				<Suspense fallback={<Backdrop open />}>
 					<LogoutDialog onClose={() => setIsLogout(false)} />
 				</Suspense>
-			)}
+			)} */}
 		</>
 	);
 };

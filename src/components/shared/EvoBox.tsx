@@ -28,9 +28,9 @@ const ChatItem = ({ chat }: ChatItemProps) => {
 					<Typography variant="subtitle2" fontWeight={500} style={styles.ellipsis}>
 						{chat.name}
 					</Typography>
-					<Typography variant="body2" style={styles.ellipsis}>
+					{/* <Typography variant="body2" style={styles.ellipsis}>
 						{chat.lastMessage}
-					</Typography>
+					</Typography> */}
 				</Grid>
 				<Grid
 					item
@@ -42,7 +42,7 @@ const ChatItem = ({ chat }: ChatItemProps) => {
 						justifyContent: "space-between",
 					}}
 				>
-					<Typography variant="body2">{chat.lastMessageTime}</Typography>
+					{/* <Typography variant="body2">{chat.lastMessageTime}</Typography> */}
 					<Box
 						sx={{
 							display: chat.unreadMessageCount ? "flex" : "none",

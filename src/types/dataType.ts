@@ -7,13 +7,13 @@ interface ChatDataType {
   unreadMessageCount?: number;
 }
 
-interface UserDataType{
-  id: string;
-  name: string;
-  email: string;
-  image?: string;
-  bio?: string;
-}
+// interface UserDataType{
+//   id: string;
+//   name: string;
+//   email: string;
+//   image?: string;
+//   bio?: string;
+// }
 
 interface UserData {
   name: string;

@@ -4,7 +4,7 @@ import { useAcceptRequestMutation, useGetRequestsQuery } from "../../redux/api/u
 
 const Notifications = ({ onClose }: { onClose: () => void }) => {
 	const { data } = useGetRequestsQuery();
-	const [acceptRequest, result] = useAcceptRequestMutation();
+	const [acceptRequest] = useAcceptRequestMutation();
 	const handleAccept = (id: string) => {
 		acceptRequest({ requestId: id });
 		onClose();

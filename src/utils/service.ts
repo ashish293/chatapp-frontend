@@ -1,4 +1,3 @@
-import toast from "react-hot-toast";
 import Api from "./Api";
 
 interface LoginBody {
@@ -53,4 +52,4 @@ const signup:SignupType = async ({ name, email, password, image }: SignupBody) =
   }
 };
 
-export { login, signup }
+export { login, signup };

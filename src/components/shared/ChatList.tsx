@@ -1,11 +1,10 @@
-import { useGetChatsQuery } from "../../redux/api/chat";
-import ChatItem from "./ChatItem";
-import { getLocalUser } from "../../utils/utility";
-import socket from "../../utils/socket";
+import { useEffect, useRef, useState } from "react";
 import events from "../../constant/events";
 import type { ChatDataType, MessageData } from "../../types/dataType";
-import { memo, useEffect, useRef, useState } from "react";
 import Api from "../../utils/Api";
+import socket from "../../utils/socket";
+import { getLocalUser } from "../../utils/utility";
+import ChatItem from "./ChatItem";
 
 const ChatList = ({ closeDrawer }: { closeDrawer: () => void }) => {
 	// const { data, isError, isLoading, error } = useGetChatsQuery();

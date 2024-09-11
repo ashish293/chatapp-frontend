@@ -1,3 +1,4 @@
+import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import {
 	Avatar,
 	Box,
@@ -9,21 +10,19 @@ import {
 	Typography,
 } from "@mui/material";
 import { useFormik } from "formik";
-import { validate } from "./validator";
 import { useState } from "react";
-import MyTextField from "./MyTextField";
-import Api from "../../utils/Api";
-import toast from "react-hot-toast";
 import { Cookies } from "react-cookie";
-import { Navigate, redirect, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { Navigate, useNavigate } from "react-router-dom";
 import { VisuallyHiddenInput } from "../../components/style/StyledComponent";
-import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import { useFileHandler } from "../../hooks/customHook";
 import { login, signup } from "../../utils/service";
+import MyTextField from "./MyTextField";
+import { validate } from "./validator";
 
 const Login = () => {
 	const authToken = new Cookies().get("chat-token");
-	const { file, fileUrl, handleFileChange } = useFileHandler();
+	const { fileUrl, handleFileChange } = useFileHandler();
 	if (authToken) {
 		return <Navigate to={"/"} />;
 	}

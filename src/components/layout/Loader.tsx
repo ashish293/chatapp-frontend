@@ -1,6 +1,6 @@
-import { Box, Container } from "@mui/material";
-import { BallTriangle } from "react-loader-spinner";
+import { Container } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { BallTriangle } from "react-loader-spinner";
 
 const Loader = () => {
 	const theme = useTheme();

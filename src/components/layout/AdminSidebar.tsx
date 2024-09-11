@@ -1,7 +1,7 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
+import { useLocation } from "react-router-dom";
 import options from "../../constant/sidebarOptions";
 import { Link } from "../style/StyledComponent";
-import { useLocation } from "react-router-dom";
 
 const AdminSidebar = () => {
 	const route = useLocation();

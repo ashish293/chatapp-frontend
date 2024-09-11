@@ -1,6 +1,6 @@
-import { Avatar, Badge, Box, Grid, Typography, alpha } from "@mui/material";
-import type { GroupItemProps } from "../../types/propsType";
+import { Avatar, Grid, Typography, alpha } from "@mui/material";
 import { memo } from "react";
+import type { GroupItemProps } from "../../types/propsType";
 
 const GroupItem = ({ data, selectedGroup, setGroup }: GroupItemProps) => {
 	const handleClick = () => setGroup(data);

@@ -2,7 +2,7 @@ import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import SearchIcon from "@mui/icons-material/Search";
 import { Avatar, Chip, IconButton, Stack, TextField, Typography } from "@mui/material";
 import { useState } from "react";
-import { dummyUserData } from "../../constant/sampleData";
+// import { dummyUserData } from "../../constant/sampleData";
 import { UserData } from "../../types/dataType";
 import AppDialog from "../layout/Dialog";
 import { useGetUsersQuery, useSendRequestMutation } from "../../redux/api/user";

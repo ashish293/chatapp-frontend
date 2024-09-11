@@ -1,7 +1,7 @@
-import { Box, Dialog, IconButton, Modal, Stack } from "@mui/material";
-import { useState } from "react";
-import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import CloseIcon from "@mui/icons-material/Close";
+import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
+import { Dialog, IconButton, Stack } from "@mui/material";
+import { useState } from "react";
 
 const Attactment = ({ url }: { url: string }) => {
 	const [open, setOpen] = useState(false);

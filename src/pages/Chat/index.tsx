@@ -9,7 +9,6 @@ import { MessageData } from "../../types/dataType";
 import Api from "../../utils/Api";
 import socket from "../../utils/socket";
 import ChatInput from "./ChatInput";
-import Header from "../../components/layout/Header";
 
 const Chat = () => {
 	const totalPages = useRef();

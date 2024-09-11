@@ -1,16 +1,12 @@
-import { Box, Drawer, Grid, Typography } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Title from "../shared/Title";
-import Header from "./Header";
-import ChatList from "../shared/ChatList";
 import UserCard from "../specific/UserCard";
-import { useState } from "react";
-import { Link } from "../style/StyledComponent";
 import SideBar from "./SideBar";
 
 const AppLayout = (WrappedComponent: React.ComponentType<any>) => (props: any) => {
-	const [open, setOpen] = useState(innerWidth < 600);
-	const openDrawer = () => setOpen(true);
-	const closeDrawer = () => setOpen(false);
+	// const [open, setOpen] = useState(innerWidth < 600);
+	// const openDrawer = () => setOpen(true);
+	const closeDrawer = () => {};
 	return (
 		<>
 			<Title />

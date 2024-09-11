@@ -19,9 +19,9 @@ const ManageGroup = ({ data }: { data: GroupInfo }) => {
 			<Avatar src={data.image} sx={{ width: 100, height: 100 }} alt={data.name} />
 			<TextField label="Group Name" size="small" sx={{ my: 2 }} value={data.name} />
 			<Box maxHeight={300} sx={{ overflowY: "scroll" }}>
-				{dummyUserData.map((user) => (
+				{dummyUserData.map((user, index) => (
 					<Stack
-						key={user.userId}
+						key={index}
 						direction={"row"}
 						alignItems="center"
 						justifyContent="space-between"
