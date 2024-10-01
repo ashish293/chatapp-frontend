@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import { lazy } from "react";
-import ProtectedRoute from "./components/specific/ProtectedRoute";
 import Home from "./pages/Home";
 import Chat from "./pages/Chat"; // Home and chat are common routes
 const AdminLogin = lazy(() => import("./pages/admin/AdminLogin"));
@@ -16,84 +15,44 @@ export default createBrowserRouter([
 	{ path: "/login", element: <Login /> },
 	{
 		path: "/",
-		element: (
-			<ProtectedRoute>
-				<Home />
-			</ProtectedRoute>
-		),
+		element: <Home />,
 	},
 
 	{
 		path: "/about",
-		element: (
-			<ProtectedRoute>
-				<About />
-			</ProtectedRoute>
-		),
+		element: <About />,
 	},
 	{
 		path: "/dashboard",
-		element: (
-			<ProtectedRoute>
-				<Dashboard />
-			</ProtectedRoute>
-		),
+		element: <Dashboard />,
 	},
 	{
 		path: "/chat/:chatId",
-		element: (
-			<ProtectedRoute>
-				<Chat />
-			</ProtectedRoute>
-		),
+		element: <Chat />,
 	},
 	{
 		path: "/group",
-		element: (
-			<ProtectedRoute>
-				<Group />
-			</ProtectedRoute>
-		),
+		element: <Group />,
 	},
 	{
 		path: "/admin",
-		element: (
-			<ProtectedRoute>
-				<AdminLogin />
-			</ProtectedRoute>
-		),
+		element: <AdminLogin />,
 	},
 	{
 		path: "/admin/dashboard",
-		element: (
-			<ProtectedRoute>
-				<Dashboard />
-			</ProtectedRoute>
-		),
+		element: <Dashboard />,
 	},
 	{
 		path: "/admin/chats",
-		element: (
-			<ProtectedRoute>
-				<AdminChat />
-			</ProtectedRoute>
-		),
+		element: <AdminChat />,
 	},
 	{
 		path: "/admin/messages",
-		element: (
-			<ProtectedRoute>
-				<AdminMessage />
-			</ProtectedRoute>
-		),
+		element: <AdminMessage />,
 	},
 	{
 		path: "/admin/users",
-		element: (
-			<ProtectedRoute>
-				<AdminUsers />
-			</ProtectedRoute>
-		),
+		element: <AdminUsers />,
 	},
 	{ path: "*", element: <div>404</div> },
 ]);

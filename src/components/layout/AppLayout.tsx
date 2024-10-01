@@ -4,8 +4,6 @@ import UserCard from "../specific/UserCard";
 import SideBar from "./SideBar";
 
 const AppLayout = (WrappedComponent: React.ComponentType<any>) => (props: any) => {
-	// const [open, setOpen] = useState(innerWidth < 600);
-	// const openDrawer = () => setOpen(true);
 	const closeDrawer = () => {};
 	return (
 		<>

@@ -11,7 +11,6 @@ import {
 } from "@mui/material";
 import { useFormik } from "formik";
 import { useState } from "react";
-import { Cookies } from "react-cookie";
 import toast from "react-hot-toast";
 import { Navigate, useNavigate } from "react-router-dom";
 import { VisuallyHiddenInput } from "../../components/style/StyledComponent";
@@ -21,9 +20,9 @@ import MyTextField from "./MyTextField";
 import { validate } from "./validator";
 
 const Login = () => {
-	const authToken = new Cookies().get("chat-token");
+	const authenticated = localStorage.getItem("authenticated");
 	const { fileUrl, handleFileChange } = useFileHandler();
-	if (authToken) {
+	if (authenticated === "true") {
 		return <Navigate to={"/"} />;
 	}
 	const navigate = useNavigate();
@@ -35,7 +34,7 @@ const Login = () => {
 			console.log(res);
 
 			if (res?.success) {
-				localStorage.setItem("token", res.token);
+				localStorage.setItem("authenticated", "true");
 				localStorage.setItem("user", JSON.stringify(res.user));
 				navigate("/");
 			} else {
@@ -45,7 +44,7 @@ const Login = () => {
 		} else {
 			const res = await signup(values);
 			if (res?.success) {
-				localStorage.setItem("token", res.token);
+				localStorage.setItem("authenticated", "true");
 				navigate("/");
 			} else {
 				toast.error(res?.message);
