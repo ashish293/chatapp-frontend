@@ -1,6 +1,12 @@
 import { IconButton, Tooltip } from "@mui/material";
 
-const IconBtn = ({ title, icon, onClick }: { title: string; icon: any; onClick: () => void }) => {
+type IconBtnProps = {
+	title: string;
+	icon: any;
+	onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+};
+
+const IconBtn = ({ title, icon, onClick }: IconBtnProps) => {
 	return (
 		<Tooltip title={title}>
 			<IconButton color="inherit" size="large" aria-label={title} onClick={onClick}>

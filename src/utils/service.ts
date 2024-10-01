@@ -52,4 +52,16 @@ const signup:SignupType = async ({ name, email, password, image }: SignupBody) =
   }
 };
 
-export { login, signup };
+const logout = async () => {
+  try {
+    const res = await Api.post("/user/logout", {});
+    if(res.data.success){
+      localStorage.clear();
+      window.location.href = "/login";
+    }
+  } catch (error: any) {
+    console.log(error);
+  }
+}
+
+export { login, signup , logout};
