@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "framework": "vite",
   "builds": [
     {
       "src": "package.json",
@@ -12,11 +13,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/index.html"
-    },
-    {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1"
+      "dest": "/"
     }
   ]
 }
