@@ -54,13 +54,12 @@ const signup:SignupType = async ({ name, email, password, image }: SignupBody) =
 
 const logout = async () => {
   try {
-    const res = await Api.post("/user/logout", {});
-    if(res.data.success){
-      localStorage.clear();
-      window.location.href = "/login";
-    }
+    await Api.post("/user/logout");
   } catch (error: any) {
     console.log(error);
+  }finally{
+    localStorage.clear();
+    window.location.href = "/login";
   }
 }
 
